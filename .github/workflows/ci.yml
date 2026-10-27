@@ -17,8 +17,29 @@ name: CI
 
 # >>> TASK 6: add the triggers (push + pull_request on main)
 on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 # <<< END TASK 6
 
 # >>> TASK 7: add a `test` job that runs on ubuntu-latest with the four steps
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: pytest -q
 # <<< END TASK 7
