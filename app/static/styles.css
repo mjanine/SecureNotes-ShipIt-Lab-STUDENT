@@ -1,0 +1,116 @@
+/* SecureNotes front-end styles — STUDENT STARTER
+
+   >>> TASK 4: two of these colors fail WCAG AA contrast (4.5:1).
+   --ink is too light to read on white, and white button text on --brand
+   is too faint. Pick darker values that reach at least 4.5:1.
+   Tip: keep --surface white; darken --ink and --brand until the two
+   contrast tests pass. (test_accessibility.py does the math for you.) */
+
+:root {
+  --ink:     #9AA0C7;   /* body text   — TODO: too light on white */
+  --surface: #FFFFFF;   /* page background                        */
+  --brand:   #12A594;   /* buttons     — TODO: white text on this is too faint */
+  --muted:   #5A5F7A;
+  --line:    #D8DBEC;
+}
+/* <<< END TASK 4 */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+  line-height: 1.55;
+}
+
+/* A11Y: visible focus outline for keyboard users (never remove outlines without a replacement) */
+a:focus, button:focus, input:focus {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* A11Y: skip link is off-screen until focused */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  background: var(--ink);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+.site-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--line);
+}
+.wordmark { font-weight: 700; font-size: 1.15rem; }
+.site-header nav { margin-left: auto; }
+.site-header ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; }
+.site-header a { color: var(--ink); text-decoration: none; }
+.site-header a:hover { text-decoration: underline; }
+
+main { max-width: 640px; margin: 0 auto; padding: 24px 22px 40px; }
+h1 { font-size: 1.9rem; margin: 0 0 4px; }
+.lede { color: var(--muted); margin-top: 0; }
+h2 { font-size: 1.25rem; margin: 28px 0 10px; }
+
+.field { margin-bottom: 12px; }
+label { display: block; font-weight: 600; margin-bottom: 4px; }
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+button {
+  background: var(--brand);
+  color: #FFFFFF;             /* white on --brand meets AA */
+  border: 0;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.08); }
+
+#note-list { list-style: none; padding: 0; }
+#note-list li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+#note-list li.empty { color: var(--muted); border-style: dashed; }
+
+.about img { max-width: 100%; height: auto; margin-top: 10px; }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 16px 22px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Starter-only styles for the placeholder elements you'll replace in Part A.
+   Once you turn .fake-label into a real <label> and .btn into a <button>,
+   the existing label{} and button{} rules above take over and these go unused. */
+.fake-label { display: block; font-weight: 600; margin-bottom: 4px; }
+.btn {
+  display: inline-block;
+  background: var(--brand);
+  color: #FFFFFF;
+  padding: 11px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
