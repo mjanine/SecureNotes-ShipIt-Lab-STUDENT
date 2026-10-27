@@ -1,6 +1,3 @@
-Here is the exact `TASKS.md` content with all checkboxes marked as completed `[x]` and the reflection answered, while preserving every other section unchanged:
-
-```markdown
 # SecureNotes — Make It Fast & Fair, Then Ship It
 
 **Weeks 16–17 Laboratory · work in pairs**
