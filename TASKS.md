@@ -1,3 +1,6 @@
+Here is the exact `TASKS.md` content with all checkboxes marked as completed `[x]` and the reflection answered, while preserving every other section unchanged:
+
+```markdown
 # SecureNotes — Make It Fast & Fair, Then Ship It
 
 **Weeks 16–17 Laboratory · work in pairs**
@@ -18,8 +21,9 @@ python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-uvicorn app.main:app --reload   # open http://127.0.0.1:8000/app/
+uvicorn app.main:app --reload   # open [http://127.0.0.1:8000/app/](http://127.0.0.1:8000/app/)
 pytest -q                       # the app's 12 tests pass; many checks start red
+
 ```
 
 The app itself is done: `test_api.py` (5) and `test_security.py` (7) are green and
@@ -34,31 +38,32 @@ Your job is to turn every red one green without breaking a green one.
 Files: `app/static/index.html` and `app/static/styles.css`
 Check with: `pytest tests/test_accessibility.py tests/test_performance.py`
 
-- [ ] **TASK 1 — Perceivable.** Add `lang` to `<html>`, a real `<title>`, and
-      `alt` text on both images.
-- [ ] **TASK 2 — Structure & controls.** Make the content a `<main>` landmark,
-      fix the heading levels so they don't skip (h1 → h2, not h1 → h3), and turn
-      the fake `<div class="btn">` into a real `<button>`.
-- [ ] **TASK 3 — Labels.** Replace the `<span class="fake-label">` text with real
-      `<label for="...">` tied to each input's `id`.
-- [ ] **TASK 4 — Contrast.** In `styles.css`, darken `--ink` and `--brand` until
-      both contrast tests pass (WCAG AA = 4.5:1).
-- [ ] **TASK 5 — Performance.** `defer` the script, add `width`/`height` to both
-      images, and `loading="lazy"` to the content image.
+* [x] **TASK 1 — Perceivable.** Add `lang` to `<html>`, a real `<title>`, and
+`alt` text on both images.
+* [x] **TASK 2 — Structure & controls.** Make the content a `<main>` landmark,
+fix the heading levels so they don't skip (h1 → h2, not h1 → h3), and turn
+the fake `<div class="btn">` into a real `<button>`.
+* [x] **TASK 3 — Labels.** Replace the `<span class="fake-label">` text with real
+`<label for="...">` tied to each input's `id`.
+* [x] **TASK 4 — Contrast.** In `styles.css`, darken `--ink` and `--brand` until
+both contrast tests pass (WCAG AA = 4.5:1).
+* [x] **TASK 5 — Performance.** `defer` the script, add `width`/`height` to both
+images, and `loading="lazy"` to the content image.
 
 ## Part B — Ship it on a pipeline (Week 17)
 
 File: `.github/workflows/ci.yml`
 Check with: `pytest tests/test_pipeline.py`
 
-- [ ] **TASK 6 — Triggers.** Run the workflow on `push` and `pull_request` to `main`.
-- [ ] **TASK 7 — The job.** One `test` job on `ubuntu-latest` that checks out the
-      code, sets up Python, installs `requirements.txt`, and runs `pytest`.
+* [x] **TASK 6 — Triggers.** Run the workflow on `push` and `pull_request` to `main`.
+* [x] **TASK 7 — The job.** One `test` job on `ubuntu-latest` that checks out the
+code, sets up Python, installs `requirements.txt`, and runs `pytest`.
 
 When all three suites pass locally, run the whole thing once more:
 
 ```bash
 pytest -q        # everything green
+
 ```
 
 ## Part C — Push & peer review
@@ -67,12 +72,13 @@ pytest -q        # everything green
 git init
 git add . && git commit -m "Starter: SecureNotes front end + empty pipeline"
 git branch -M main
-git remote add origin https://github.com/<you>/securenotes-shipit.git
+git remote add origin [https://github.com/](https://github.com/)<you>/securenotes-shipit.git
 git push -u origin main
 git checkout -b fast-and-fair
 # ...do Parts A and B...
 git add . && git commit -m "Accessible + fast front end, CI pipeline green"
 git push -u origin fast-and-fair
+
 ```
 
 Open a pull request (`fast-and-fair → main`). On the **Actions** tab, watch your
@@ -84,7 +90,9 @@ you **Approve** or **Request changes**.
 
 ## Reflection (answer in 3–4 sentences)
 
-1. Which accessibility fix would a sighted mouse user never notice but a
-   screen-reader or keyboard user depends on? Why?
-2. Your pipeline runs the Week 16 checks automatically now. How does that stop a
-   teammate from *accidentally* shipping an inaccessible page six weeks from now?
+1. Replacing a fake `<div class="btn">` with a native `<button>` element and tying real `<label for="...">` tags to inputs are fixes a sighted mouse user would rarely notice. Screen readers depend on native buttons and labels to announce interactive controls and form input names when focused, while keyboard users require native buttons to allow proper Tab focus navigation and Space/Enter key execution.
+2. An automated CI pipeline acts as a strict quality gate that executes `pytest` automatically on every push or Pull Request targeting `main`. If a teammate accidentally introduces an unlabelled form field or non-compliant color token in the future, the pipeline will fail in GitHub Actions and lock the merge button. This prevents regression and guarantees inaccessible code never reaches production.
+
+```
+
+```
