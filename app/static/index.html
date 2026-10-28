@@ -8,21 +8,21 @@
   to see red turn green. The handout explains the "why" behind each task.
 -->
 <!-- >>> TASK 1a: give the page a language (WCAG 3.1.1) -->
-<html>
+<html lang="en">
 <!-- <<< END TASK 1a -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- >>> TASK 1b: give the page a real, descriptive <title> (WCAG 2.4.2) -->
-  <title></title>
+  <title>SecureNotes - Private Notes</title>
   <!-- <<< END TASK 1b -->
 
   <link rel="stylesheet" href="styles.css">
 
   <!-- >>> TASK 5a: this script blocks the first paint. Make it non-blocking
        (defer) so the HTML renders first. -->
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
   <!-- <<< END TASK 5a -->
 </head>
 <body>
@@ -33,7 +33,7 @@
     <!-- >>> TASK 1c: both images are missing alt text (WCAG 1.1.1).
          Also, TASK 5b: they have no width/height (causes layout shift),
          and TASK 5c: the one inside the content should be loading="lazy". -->
-    <img src="logo.svg">
+    <img src="logo.svg" alt="SecureNotes logo" width="40" height="40">
     <!-- <<< (TASK 1c / 5b apply to this image too) -->
     <span class="wordmark">SecureNotes</span>
 
@@ -46,7 +46,7 @@
     </nav>
   </div>
 
-  <div id="main">
+  <main id="main">
     <!-- <<< END TASK 2a -->
 
     <h1>Your notes, kept private</h1>
@@ -55,7 +55,7 @@
     <section id="login">
       <!-- >>> TASK 2b: heading levels skip from h1 straight to h3.
            Fix the section headings so levels don't skip (WCAG 1.3.1). -->
-      <h3>Log in</h3>
+      <h2>Log in</h2>
       <!-- <<< END TASK 2b -->
 
       <form id="login-form" novalidate>
@@ -63,11 +63,11 @@
              <label> tied to the input, so screen readers don't announce it.
              Use <label for="..."> matched to each input's id (WCAG 3.3.2). -->
         <div class="field">
-          <span class="fake-label">Username</span>
+          <label for="username">Username</label>
           <input id="username" name="username" type="text" autocomplete="username" required>
         </div>
         <div class="field">
-          <span class="fake-label">Password</span>
+          <label for="password">Password</label>
           <input id="password" name="password" type="password" autocomplete="current-password" required>
         </div>
         <!-- <<< END TASK 3 -->
@@ -75,7 +75,7 @@
         <!-- >>> TASK 2c: this is a <div> pretending to be a button — keyboard
              users can't reach it and screen readers don't call it a button.
              Make it a real <button type="submit"> (WCAG 4.1.2). -->
-        <div class="btn" onclick="document.getElementById('login-form').requestSubmit()">Log in</div>
+        <button class="btn" type="submit">Log in</button>
         <!-- <<< END TASK 2c -->
       </form>
 
@@ -83,24 +83,25 @@
     </section>
 
     <section id="notes">
-      <h3>My notes</h3>
+      <h2>My notes</h2>
       <ul id="note-list">
         <li class="empty">Log in to load your notes.</li>
       </ul>
     </section>
 
     <section id="about" class="about">
-      <h3>Why SecureNotes</h3>
+      <h2>Why SecureNotes</h2>
       <p>
         Passwords are hashed, every note is tied to its owner, and the whole
         app is checked automatically before each release.
       </p>
       <!-- This image needs alt (TASK 1c), width/height (TASK 5b),
            and loading="lazy" (TASK 5c). -->
-      <img src="illustration.svg">
+      <img src="illustration.svg" alt="A padlock resting on a stack of notes"
+           width="320" height="200" loading="lazy">
     </section>
 
-  </div>
+  </main>
 
   <footer class="site-footer">
     <p>SecureNotes · Web Systems and Technologies</p>
